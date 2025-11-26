@@ -31,3 +31,5 @@ ui-debug.log*
 
 # Emulator data
 emulator-data/
+
+.env
