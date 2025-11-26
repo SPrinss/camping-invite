@@ -1,0 +1,273 @@
+/* =============================================
+   Confetti Animation Styles
+   CSS-based confetti for success celebrations
+   ============================================= */
+
+/* === Confetti Container === */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: var(--z-confetti);
+}
+
+/* === Individual Confetti Piece === */
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  opacity: 0;
+  animation: confetti-fall 4s ease-in-out forwards;
+}
+
+/* Confetti shapes */
+.confetti--square {
+  border-radius: 0;
+}
+
+.confetti--circle {
+  border-radius: 50%;
+}
+
+.confetti--rectangle {
+  width: 6px;
+  height: 14px;
+  border-radius: 2px;
+}
+
+.confetti--triangle {
+  width: 0;
+  height: 0;
+  background: transparent !important;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 10px solid var(--confetti-color, var(--color-campfire));
+}
+
+/* === Confetti Colors (camping themed) === */
+.confetti--green { background-color: var(--color-forest); }
+.confetti--light-green { background-color: var(--color-sage); }
+.confetti--orange { background-color: var(--color-campfire); }
+.confetti--golden { background-color: var(--color-golden); }
+.confetti--brown { background-color: var(--color-bark); }
+.confetti--cream { background-color: var(--color-sand); }
+
+/* Triangle colors */
+.confetti--triangle.confetti--green { border-bottom-color: var(--color-forest); }
+.confetti--triangle.confetti--light-green { border-bottom-color: var(--color-sage); }
+.confetti--triangle.confetti--orange { border-bottom-color: var(--color-campfire); }
+.confetti--triangle.confetti--golden { border-bottom-color: var(--color-golden); }
+.confetti--triangle.confetti--brown { border-bottom-color: var(--color-bark); }
+
+/* === Fall Animation === */
+@keyframes confetti-fall {
+  0% {
+    opacity: 1;
+    transform: translateY(-100px) rotate(0deg) scale(1);
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100vh) rotate(720deg) scale(0.5);
+  }
+}
+
+/* === Horizontal Drift Variants === */
+@keyframes confetti-fall-left {
+  0% {
+    opacity: 1;
+    transform: translateY(-100px) translateX(0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100vh) translateX(-150px) rotate(540deg);
+  }
+}
+
+@keyframes confetti-fall-right {
+  0% {
+    opacity: 1;
+    transform: translateY(-100px) translateX(0) rotate(0deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100vh) translateX(150px) rotate(-540deg);
+  }
+}
+
+.confetti--drift-left {
+  animation-name: confetti-fall-left;
+}
+
+.confetti--drift-right {
+  animation-name: confetti-fall-right;
+}
+
+/* === Staggered Animation Delays === */
+.confetti--delay-1 { animation-delay: 0.1s; }
+.confetti--delay-2 { animation-delay: 0.2s; }
+.confetti--delay-3 { animation-delay: 0.3s; }
+.confetti--delay-4 { animation-delay: 0.4s; }
+.confetti--delay-5 { animation-delay: 0.5s; }
+.confetti--delay-6 { animation-delay: 0.6s; }
+.confetti--delay-7 { animation-delay: 0.7s; }
+.confetti--delay-8 { animation-delay: 0.8s; }
+.confetti--delay-9 { animation-delay: 0.9s; }
+.confetti--delay-10 { animation-delay: 1.0s; }
+
+/* === Speed Variants === */
+.confetti--slow {
+  animation-duration: 5s;
+}
+
+.confetti--fast {
+  animation-duration: 3s;
+}
+
+/* === Size Variants === */
+.confetti--small {
+  transform: scale(0.6);
+}
+
+.confetti--large {
+  transform: scale(1.4);
+}
+
+/* === Wiggle Animation (for floating effect) === */
+@keyframes confetti-wiggle {
+  0%, 100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-15px) rotate(-10deg);
+  }
+  75% {
+    transform: translateX(15px) rotate(10deg);
+  }
+}
+
+.confetti--wiggle {
+  animation: confetti-fall 4s ease-in-out forwards,
+             confetti-wiggle 0.5s ease-in-out infinite;
+}
+
+/* === Burst Animation (for initial explosion) === */
+@keyframes confetti-burst {
+  0% {
+    opacity: 1;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(180deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.8) translateY(100vh) rotate(360deg);
+  }
+}
+
+.confetti--burst {
+  animation: confetti-burst 3s ease-out forwards;
+}
+
+/* === Confetti Canvas (for JS-based confetti) === */
+.confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: var(--z-confetti);
+}
+
+/* === Emoji Confetti (camping themed) === */
+.confetti-emoji {
+  position: absolute;
+  font-size: 24px;
+  animation: confetti-fall 4s ease-in-out forwards;
+  pointer-events: none;
+}
+
+/* Preset emoji content */
+.confetti-emoji--tent::before { content: '\26FA'; }    /* Tent */
+.confetti-emoji--tree::before { content: '\1F332'; }   /* Evergreen */
+.confetti-emoji--fire::before { content: '\1F525'; }   /* Fire */
+.confetti-emoji--star::before { content: '\2B50'; }    /* Star */
+.confetti-emoji--sparkle::before { content: '\2728'; } /* Sparkles */
+.confetti-emoji--party::before { content: '\1F389'; }  /* Party popper */
+
+/* === Reduced Motion === */
+@media (prefers-reduced-motion: reduce) {
+  .confetti,
+  .confetti-emoji {
+    animation: none;
+    opacity: 0;
+  }
+
+  .confetti-container {
+    display: none;
+  }
+}
+
+/* === Success Celebration Wrapper === */
+.celebration {
+  position: relative;
+}
+
+.celebration--active .confetti-container {
+  display: block;
+}
+
+/* === Sparkle Effect (additional flair) === */
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.sparkle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--color-golden);
+  border-radius: 50%;
+  animation: sparkle 1.5s ease-in-out infinite;
+}
+
+.sparkle::before,
+.sparkle::after {
+  content: '';
+  position: absolute;
+  background: inherit;
+  border-radius: inherit;
+}
+
+.sparkle::before {
+  width: 100%;
+  height: 100%;
+  top: -200%;
+  left: 0;
+}
+
+.sparkle::after {
+  width: 100%;
+  height: 100%;
+  top: 200%;
+  left: 0;
+}

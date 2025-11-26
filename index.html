@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Het grote vrienden kampeerfeest: 7-9 aug 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/main.css">
+</head>
+<body>
+  <div class="page-wrapper">
+    <!-- Decorative background elements -->
+    <div class="decorative-elements">
+      <div class="decoration tent-left"></div>
+      <div class="decoration tree-right"></div>
+      <div class="decoration stars"></div>
+    </div>
+
+    <!-- Main content -->
+    <main class="main-content">
+      <!-- Header section -->
+      <header id="header"></header>
+
+      <!-- Event info section -->
+      <section id="event-info" class="section"></section>
+
+      <!-- Photo collage from previous camping events -->
+      <section class="photo-collage" aria-label="Foto's van eerdere kampeerweekends">
+        <div class="collage-container">
+          <!-- Top row - scattered photos -->
+          <div class="collage-photo collage-photo--1">
+            <img src="https://firebasestorage.googleapis.com/v0/b/camping-invite.firebasestorage.app/o/IMG-20210731-WA0051.jpg?alt=media&token=71b2a55a-b4d2-4b62-975f-602c9d520fe2" alt="Kamperen 2021" loading="lazy">
+          </div>
+          <div class="collage-photo collage-photo--2">
+            <img src="https://firebasestorage.googleapis.com/v0/b/camping-invite.firebasestorage.app/o/IMG-20210731-WA0016.jpg?alt=media&token=cac2d242-0c0b-45f6-95c4-b42dc0c5f98f" alt="Kamperen 2021" loading="lazy">
+          </div>
+          <div class="collage-photo collage-photo--3">
+            <img src="https://firebasestorage.googleapis.com/v0/b/camping-invite.firebasestorage.app/o/IMG-20210731-WA0006.jpg?alt=media&token=8665b811-df78-4794-bd37-5d914c80c4d5" alt="Kamperen 2021" loading="lazy">
+          </div>
+          <!-- Bottom row -->
+          <div class="collage-photo collage-photo--4">
+            <img src="https://firebasestorage.googleapis.com/v0/b/camping-invite.firebasestorage.app/o/IMG-20210731-WA0027.jpg?alt=media&token=00400f6b-40da-4170-920f-9b28524600ca" alt="Kamperen 2021" loading="lazy">
+          </div>
+          <div class="collage-photo collage-photo--5">
+            <img src="https://firebasestorage.googleapis.com/v0/b/camping-invite.firebasestorage.app/o/IMG_20210731_120230.jpg?alt=media&token=069fa532-ebd3-4d56-9f8a-9dbfcaaa03af" alt="Kamperen 2021" loading="lazy">
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing table section -->
+      <section id="pricing" class="section">
+        <h2 class="section-title">Prijzen</h2>
+        <div id="pricing-table"></div>
+      </section>
+
+      <!-- RSVP Form section (Task 4 will populate this) -->
+      <section id="rsvp-section" class="section">
+        <h2 class="section-title">Aanmelden</h2>
+        <div id="rsvp-form"></div>
+      </section>
+
+      <!-- Success message (Task 7 will populate this) -->
+      <div id="success-container" class="hidden"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>Vragen? Mail Sam of Martina</p>
+      <p class="footer-note">
+        <a href="https://www.logerenbijdeboswachter.nl/groepskamperen/groepskampeerterrein-de-banken-zeewolde" target="_blank" rel="noopener noreferrer" class="location-link">
+          Groepskampeerterrein de Banken
+        </a>
+      </p>
+    </footer>
+  </div>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>

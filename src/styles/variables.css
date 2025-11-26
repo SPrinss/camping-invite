@@ -1,0 +1,185 @@
+/* =============================================
+   CSS Variables - Camping Invite Theme
+   Quirky, handmade, nostalgic summer camp vibes
+   ============================================= */
+
+:root {
+  /* === Primary Colors (Deep Forest Greens) === */
+  --color-forest: #1a4d2e;
+  --color-forest-light: #2e7d4a;
+  --color-forest-dark: #0f2d1a;
+  --color-sage: #7db87d;
+  --color-sage-light: #a5d4a5;
+  --color-mint: #d4edd4;
+  --color-moss: #4a6741;
+
+  /* === Accent Colors (Warm Sunset/Campfire) === */
+  --color-campfire: #e85d04;
+  --color-campfire-light: #ff8a3d;
+  --color-campfire-dark: #c44d00;
+  --color-ember: #dc2f02;
+  --color-sunset: #ffba49;
+  --color-golden: #ffd23f;
+  --color-marshmallow: #fff5eb;
+
+  /* === Earth Tones (Rich Browns & Warm Neutrals) === */
+  --color-bark: #3d2914;
+  --color-bark-light: #5c422b;
+  --color-wood: #8b5e34;
+  --color-sand: #e6d5b8;
+  --color-sand-light: #f7f0e3;
+  --color-cream: #fefcf6;
+  --color-paper: #f9f5ed;
+
+  /* === Sky & Night Colors === */
+  --color-sky: #6ec6e6;
+  --color-sky-light: #a8ddf0;
+  --color-night: #1a1f2e;
+  --color-twilight: #2d3a4f;
+  --color-starlight: #fff9db;
+
+  /* === Semantic Colors === */
+  --color-primary: var(--color-forest);
+  --color-primary-light: var(--color-forest-light);
+  --color-primary-dark: var(--color-forest-dark);
+  --color-secondary: var(--color-campfire);
+  --color-secondary-light: var(--color-campfire-light);
+  --color-accent: var(--color-golden);
+
+  --color-background: var(--color-paper);
+  --color-background-alt: var(--color-sand-light);
+  --color-surface: #ffffff;
+  --color-surface-elevated: #ffffff;
+
+  --color-text: var(--color-bark);
+  --color-text-light: var(--color-bark-light);
+  --color-text-muted: #7a6b5a;
+  --color-text-inverse: var(--color-cream);
+
+  --color-success: var(--color-forest-light);
+  --color-error: var(--color-ember);
+  --color-warning: var(--color-sunset);
+
+  /* === Typography - Distinctive & Handmade Feel === */
+  --font-family-display: 'Caveat', 'Permanent Marker', cursive;
+  --font-family-heading: 'Baloo 2', 'Comic Neue', cursive;
+  --font-family-body: 'Quicksand', 'Nunito', sans-serif;
+  --font-family-mono: 'Fira Code', 'Consolas', monospace;
+
+  --font-size-xs: 0.8rem;     /* 12.8px */
+  --font-size-sm: 0.9rem;     /* 14.4px */
+  --font-size-base: 1.05rem;  /* 16.8px - slightly larger for readability */
+  --font-size-md: 1.15rem;    /* 18.4px */
+  --font-size-lg: 1.35rem;    /* 21.6px */
+  --font-size-xl: 1.6rem;     /* 25.6px */
+  --font-size-2xl: 2rem;      /* 32px */
+  --font-size-3xl: 2.5rem;    /* 40px */
+  --font-size-4xl: 3.2rem;    /* 51.2px */
+  --font-size-5xl: 4.5rem;    /* 72px */
+  --font-size-hero: 5.5rem;   /* 88px */
+
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  --line-height-tight: 1.15;
+  --line-height-snug: 1.35;
+  --line-height-normal: 1.6;
+  --line-height-relaxed: 1.8;
+
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0.01em;
+  --letter-spacing-wide: 0.03em;
+
+  /* === Spacing (generous for breathing room) === */
+  --spacing-0: 0;
+  --spacing-1: 0.25rem;   /* 4px */
+  --spacing-2: 0.5rem;    /* 8px */
+  --spacing-3: 0.75rem;   /* 12px */
+  --spacing-4: 1rem;      /* 16px */
+  --spacing-5: 1.25rem;   /* 20px */
+  --spacing-6: 1.5rem;    /* 24px */
+  --spacing-8: 2rem;      /* 32px */
+  --spacing-10: 2.5rem;   /* 40px */
+  --spacing-12: 3rem;     /* 48px */
+  --spacing-16: 4rem;     /* 64px */
+  --spacing-20: 5rem;     /* 80px */
+  --spacing-24: 6rem;     /* 96px */
+  --spacing-32: 8rem;     /* 128px */
+
+  /* === Border Radius (organic, hand-drawn feel) === */
+  --radius-sm: 0.5rem;    /* 8px */
+  --radius-md: 0.75rem;   /* 12px */
+  --radius-lg: 1rem;      /* 16px */
+  --radius-xl: 1.25rem;   /* 20px */
+  --radius-2xl: 1.75rem;  /* 28px */
+  --radius-3xl: 2.5rem;   /* 40px */
+  --radius-blob: 60% 40% 55% 45% / 55% 60% 40% 45%;
+  --radius-full: 9999px;
+
+  /* === Shadows (warm, diffused) === */
+  --shadow-sm: 0 2px 4px rgba(61, 41, 20, 0.06);
+  --shadow-md: 0 4px 12px -2px rgba(61, 41, 20, 0.12),
+               0 2px 4px -1px rgba(61, 41, 20, 0.04);
+  --shadow-lg: 0 12px 24px -4px rgba(61, 41, 20, 0.14),
+               0 4px 8px -2px rgba(61, 41, 20, 0.06);
+  --shadow-xl: 0 24px 48px -8px rgba(61, 41, 20, 0.16),
+               0 12px 16px -4px rgba(61, 41, 20, 0.08);
+  --shadow-glow: 0 0 30px rgba(232, 93, 4, 0.25);
+  --shadow-glow-golden: 0 0 40px rgba(255, 210, 63, 0.35);
+  --shadow-inner: inset 0 2px 8px rgba(61, 41, 20, 0.08);
+
+  /* === Transitions (playful, bouncy) === */
+  --transition-fast: 150ms ease-out;
+  --transition-normal: 250ms ease-out;
+  --transition-slow: 400ms ease-out;
+  --transition-bounce: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-spring: 600ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* === Z-Index Scale === */
+  --z-behind: -1;
+  --z-base: 0;
+  --z-decorations: 1;
+  --z-content: 10;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-confetti: 500;
+  --z-toast: 600;
+
+  /* === Layout (readable widths) === */
+  --container-max-width: 680px;
+  --container-wide: 900px;
+  --container-narrow: 520px;
+  --container-padding: clamp(1.25rem, 5vw, 2.5rem);
+  --content-max-width: 60ch;
+  --header-height: 80px;
+
+  /* === Decorative === */
+  --rotation-slight: -1.5deg;
+  --rotation-playful: 2deg;
+  --wiggle-amount: 3px;
+
+  /* === Breakpoints (for reference in JS) === */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+}
+
+/* === Dark Mode (optional, nature-at-night theme) === */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Uncomment to enable dark mode
+    --color-background: var(--color-night);
+    --color-background-alt: #243447;
+    --color-surface: #2a3f54;
+    --color-surface-elevated: #334d66;
+    --color-text: var(--color-starlight);
+    --color-text-light: #c5d3e0;
+    --color-text-muted: #8a9fb4;
+    */
+  }
+}

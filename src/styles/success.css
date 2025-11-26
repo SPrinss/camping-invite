@@ -1,0 +1,216 @@
+/* =============================================
+   Success Message & Confetti Styles
+   Styles for the post-RSVP success state
+   ============================================= */
+
+/* === Success Message Container === */
+.success-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: var(--spacing-8);
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.9) translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.success-message-visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.success-message-content {
+  max-width: 400px;
+}
+
+/* === Success Icon === */
+.success-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100px;
+  height: 100px;
+  margin-bottom: var(--spacing-6);
+  background: linear-gradient(135deg, var(--color-sage) 0%, var(--color-forest-light) 100%);
+  border-radius: var(--radius-full);
+  color: var(--color-cream);
+  animation: success-icon-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+  box-shadow: var(--shadow-lg), 0 0 30px rgba(135, 168, 120, 0.3);
+}
+
+.success-icon svg {
+  width: 48px;
+  height: 48px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.success-icon circle {
+  stroke-dasharray: 63;
+  stroke-dashoffset: 63;
+  animation: success-circle-draw 0.5s ease 0.4s forwards;
+}
+
+.success-icon path {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  animation: success-check-draw 0.3s ease 0.8s forwards;
+}
+
+/* === Success Title === */
+.success-title {
+  font-family: var(--font-family-display);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-forest);
+  margin-bottom: var(--spacing-2);
+  animation: success-fade-in 0.5s ease 0.3s both;
+}
+
+/* === Success Subtitle === */
+.success-subtitle {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-lg);
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-6);
+  animation: success-fade-in 0.5s ease 0.4s both;
+}
+
+/* === Decorative Tent === */
+.success-tent {
+  margin-bottom: var(--spacing-6);
+  animation: success-tent-bounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s both;
+}
+
+.success-tent svg {
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+/* === Note about changing RSVP === */
+.success-note {
+  padding: var(--spacing-4) var(--spacing-6);
+  background: var(--color-sand-light);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--color-campfire);
+  animation: success-fade-in 0.5s ease 0.8s both;
+}
+
+.success-note p {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  margin: 0;
+  line-height: var(--line-height-relaxed);
+}
+
+.success-note p:first-child {
+  margin-bottom: var(--spacing-1);
+}
+
+.success-note strong {
+  color: var(--color-campfire);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* === Animations === */
+@keyframes success-icon-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes success-circle-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes success-check-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes success-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes success-tent-bounce {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  60% {
+    transform: translateY(-5px) scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* === Confetti Canvas === */
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: var(--z-confetti, 500);
+}
+
+/* === Responsive Adjustments === */
+@media (max-width: 640px) {
+  .success-message {
+    padding: var(--spacing-6);
+    min-height: 350px;
+  }
+
+  .success-icon {
+    width: 80px;
+    height: 80px;
+    margin-bottom: var(--spacing-4);
+  }
+
+  .success-icon svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .success-title {
+    font-size: var(--font-size-xl);
+  }
+
+  .success-subtitle {
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-4);
+  }
+
+  .success-tent svg {
+    width: 100px;
+    height: 67px;
+  }
+
+  .success-note {
+    padding: var(--spacing-3) var(--spacing-4);
+  }
+}
