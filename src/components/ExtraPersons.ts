@@ -81,6 +81,17 @@ export function createExtraPersons(
             />
             <span class="form-error" id="extra-email-error-${index}"></span>
           </div>
+          <div class="form-group form-group--checkbox">
+            <label class="checkbox-label">
+              <input
+                type="checkbox"
+                class="extra-baby"
+                data-index="${index}"
+                ${person.isBaby ? 'checked' : ''}
+              >
+              <span class="checkbox-text">Baby (< 2 jaar)</span>
+            </label>
+          </div>
         </div>
         <div class="extra-person__remove">
           <button type="button" class="btn btn--remove" data-index="${index}" aria-label="Verwijder persoon">
@@ -97,19 +108,35 @@ export function createExtraPersons(
 
     listContainer.querySelectorAll('.extra-naam').forEach(input => {
       input.addEventListener('input', handleNameChange);
+      input.addEventListener('change', handleNameChange);
       input.addEventListener('blur', handleNameBlur);
     });
 
     listContainer.querySelectorAll('.extra-email').forEach(input => {
       input.addEventListener('input', handleEmailChange);
+      input.addEventListener('change', handleEmailChange);
       input.addEventListener('blur', handleEmailBlur);
     });
+
+    listContainer.querySelectorAll('.extra-baby').forEach(input => {
+      input.addEventListener('change', handleBabyChange);
+    });
+  }
+
+  function handleBabyChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const index = parseInt(input.dataset.index || '0', 10);
+
+    state.persons = state.persons.map((person, i) =>
+      i === index ? { ...person, isBaby: input.checked } : person
+    );
+    onChange(state.persons);
   }
 
   function handleAddPerson(): void {
     if (state.persons.length >= MAX_EXTRA_PERSONS) return;
 
-    state.persons = [...state.persons, { naam: '', email: '' }];
+    state.persons = [...state.persons, { naam: '', email: '', isBaby: false }];
     render();
     onChange(state.persons);
 
@@ -134,10 +161,9 @@ export function createExtraPersons(
     const input = event.target as HTMLInputElement;
     const index = parseInt(input.dataset.index || '0', 10);
 
-    state.persons[index] = {
-      ...state.persons[index],
-      naam: input.value
-    };
+    state.persons = state.persons.map((person, i) =>
+      i === index ? { ...person, naam: input.value } : person
+    );
     onChange(state.persons);
   }
 
@@ -145,10 +171,9 @@ export function createExtraPersons(
     const input = event.target as HTMLInputElement;
     const index = parseInt(input.dataset.index || '0', 10);
 
-    state.persons[index] = {
-      ...state.persons[index],
-      email: input.value
-    };
+    state.persons = state.persons.map((person, i) =>
+      i === index ? { ...person, email: input.value } : person
+    );
     onChange(state.persons);
   }
 
