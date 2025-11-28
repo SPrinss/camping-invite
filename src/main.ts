@@ -5,7 +5,7 @@
 
 import { renderHeader } from './components/Header';
 import { renderEventInfo } from './components/EventInfo';
-import { renderPricingTable } from './components/PricingTable';
+
 import { createForm } from './components/Form';
 import { onSuccess } from './components/SuccessMessage';
 import './styles/success.css';
@@ -17,7 +17,6 @@ function initializePage(): void {
   // Render static content components
   renderHeader('header');
   renderEventInfo('event-info');
-  renderPricingTable('pricing-table');
 
   // Initialize RSVP form
   const formContainer = document.getElementById('rsvp-form');
