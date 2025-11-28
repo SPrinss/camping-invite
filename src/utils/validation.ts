@@ -8,6 +8,7 @@ export interface ValidationResult {
 export interface ExtraPerson {
   naam: string;
   email?: string;
+  isBaby?: boolean;
 }
 
 export interface RSVPFormData {
