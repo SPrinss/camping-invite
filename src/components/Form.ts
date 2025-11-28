@@ -1,7 +1,8 @@
 // RSVP Form component
 import { RSVPFormData, ExtraPerson, validateForm, validateField } from '../utils/validation';
 import { createExtraPersons } from './ExtraPersons';
-import { submitRSVP } from '../services/api'; // Task 5 will create this
+import { submitRSVP } from '../services/api';
+import { calculatePrice } from '../utils/pricing';
 
 export type AttendanceOption = '2-nachten' | '1-nacht' | 'alleen-vrijdag' | 'betaal-heel-weekend' | 'wil-graag-maar-kan-niet' | 'niet';
 
@@ -102,6 +103,10 @@ export function createForm(
           <div id="extra-persons-container"></div>
         </div>
 
+        <div id="price-calculation" class="price-calculation hidden">
+          <!-- Price details will be injected here -->
+        </div>
+
         ${state.errors.length > 0 ? `
           <div class="alert alert--error" role="alert">
             <p><strong>Er zijn fouten gevonden:</strong></p>
@@ -158,8 +163,57 @@ export function createForm(
         state.aanwezigheid = (e.target as HTMLInputElement).value as AttendanceOption;
         clearFieldError('aanwezigheid');
         render();
+        updatePrice();
       });
     });
+  }
+
+  function updatePrice(): void {
+    const priceContainer = container.querySelector('#price-calculation') as HTMLElement;
+    if (!priceContainer) return;
+
+    const formData: RSVPFormData = {
+      naam: state.naam,
+      email: state.email,
+      aanwezigheid: state.aanwezigheid,
+      extraPersonen: state.extraPersonen
+    };
+
+    const priceBreakdown = calculatePrice(formData);
+
+    if (!priceBreakdown) {
+      priceContainer.classList.add('hidden');
+      priceContainer.innerHTML = '';
+      return;
+    }
+
+    priceContainer.classList.remove('hidden');
+    priceContainer.innerHTML = `
+      <div class="pricing-display">
+        <div class="price-label">Totaalprijs</div>
+        <div class="price-big">€ ${Math.ceil(priceBreakdown.totalPrice)}</div>
+
+        <details class="pricing-details">
+          <summary>Bekijk berekening</summary>
+          <div class="pricing-breakdown-content">
+            ${priceBreakdown.lines.map(line => `
+              <div class="price-line">
+                <div class="price-line__label">
+                  <span>${escapeHtml(line.label)}</span>
+                  ${line.details ? `<small class="price-line__details">${escapeHtml(line.details)}</small>` : ''}
+                </div>
+                <span class="price-line__amount">€ ${line.amount.toFixed(2).replace('.', ',')}</span>
+              </div>
+            `).join('')}
+            <div class="price-total-exact">
+              <span>Exact totaal</span>
+              <span>€ ${priceBreakdown.totalPrice.toFixed(2).replace('.', ',')}</span>
+            </div>
+            <p class="price-explanation">${escapeHtml(priceBreakdown.explanation)}</p>
+          </div>
+        </details>
+      </div>
+    `;
   }
 
   function initExtraPersons(): void {
@@ -168,6 +222,7 @@ export function createForm(
       extraPersonsContainer,
       (persons) => {
         state.extraPersonen = persons;
+        updatePrice();
       }
     );
   }
@@ -199,11 +254,6 @@ export function createForm(
 
     // Clear previous errors
     state.errors = [];
-
-    // Get current extra persons from component
-    if (extraPersonsComponent) {
-      state.extraPersonen = extraPersonsComponent.getPersons();
-    }
 
     const formData: RSVPFormData = {
       naam: state.naam,
@@ -255,10 +305,15 @@ export function createForm(
       errors: []
     };
     render();
+    // Reset extra persons component
+    if (extraPersonsComponent) {
+      extraPersonsComponent.reset();
+    }
   }
 
   // Initialize
   render();
+  updatePrice();
 
   return {
     reset
