@@ -16,6 +16,11 @@ import {
 export async function submitRSVP(data: RSVPData): Promise<void> {
   const url = `${FIRESTORE_BASE_URL}/${COLLECTIONS.RSVPS}`;
 
+  // Filter out any invalid extra persons (defensive programming)
+  const validExtraPersonen = (data.extraPersonen || []).filter(
+    person => person && person.naam && person.naam.trim() !== ''
+  );
+
   // Convert data to Firestore REST API format
   const firestoreDocument = {
     fields: {
@@ -24,7 +29,7 @@ export async function submitRSVP(data: RSVPData): Promise<void> {
       aanwezigheid: { stringValue: data.aanwezigheid },
       extraPersonen: {
         arrayValue: {
-          values: data.extraPersonen.map((person) => ({
+          values: validExtraPersonen.map((person) => ({
             mapValue: {
               fields: {
                 naam: { stringValue: person.naam },
